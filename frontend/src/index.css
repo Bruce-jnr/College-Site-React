@@ -1,0 +1,140 @@
+:root {
+  --main-color: #021f37;
+  --accent-color: #ffc107;
+  --brand-color: #021f37;
+}
+
+/* Override Bootstrap's primary background */
+.bg-primary {
+  background-color: var(--main-color) !important;
+}
+
+.brand {
+  color: var(--brand-color) !important;
+}
+
+.text-secondary {
+  color: var(--accent-color) !important;
+}
+
+/* Override Bootstrap's secondary background */
+.bg-secondary {
+  background-color: var(--main-color) !important;
+}
+
+.top-bar a {
+  font-size: 1.1rem;
+  transition: 0.3s ease;
+}
+
+.top-bar a:hover {
+  transform: translateY(-2px);
+}
+
+/* Ticker */
+.ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.ticker {
+  display: inline-block;
+  padding-left: 100%;
+  animation: tickerMove 22s linear infinite;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.ticker span {
+  display: inline-flex;
+  align-items: center;
+}
+
+@keyframes tickerMove {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Navbar */
+.navbar-nav .nav-link {
+  transition: 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #6c757d !important;
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+}
+
+.dropdown-item {
+  padding: 0.7rem 1rem;
+  transition: 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #ffc107;
+  color: #000;
+  padding-left: 1.2rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .ticker {
+    font-size: 0.75rem;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+  }
+}
+.page-content {
+  padding-top: 128px;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+.carousel-caption {
+  top: 30%;
+  bottom: auto;
+  transform: translateY(-50);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  z-index: 2;
+}
+
+.carousel-item {
+  position: relative;
+}
+
+.carousel-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 4, 116, 0.616); /* adjust darkness */
+  z-index: 1;
+}
+
+/* Keep image normal */
+.carousel-item img {
+  position: relative;
+  z-index: 0;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item {
+  height: 80vh; /* or 500px, 600px */
+  width: 100%;
+}

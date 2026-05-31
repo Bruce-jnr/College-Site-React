@@ -1,0 +1,79 @@
+-- Database schema for College Website
+
+CREATE DATABASE IF NOT EXISTS college_db;
+USE college_db;
+
+-- Users table for admin authentication
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Announcements table
+CREATE TABLE IF NOT EXISTS announcements (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  author VARCHAR(255) NOT NULL,
+  date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- News table
+CREATE TABLE IF NOT EXISTS news (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  imageUrl VARCHAR(500) NULL,
+  author VARCHAR(255) NOT NULL,
+  date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- SRC Executives table
+CREATE TABLE IF NOT EXISTS src_executives (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  position VARCHAR(255) NOT NULL,
+  imageUrl VARCHAR(500) NULL,
+  year VARCHAR(50) NOT NULL,
+  isCurrent BOOLEAN DEFAULT FALSE,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_year (year),
+  INDEX idx_current (isCurrent)
+);
+
+-- Admission Status table (singleton - only one row)
+CREATE TABLE IF NOT EXISTS admission_status (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  isOpen BOOLEAN DEFAULT FALSE,
+  year VARCHAR(50) DEFAULT '2025/2026',
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Staff table
+-- Run this ALTER TABLE if the table already exists:
+-- ALTER TABLE staff ADD COLUMN department VARCHAR(255) NULL AFTER qualification;
+CREATE TABLE IF NOT EXISTS staff (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  full_name VARCHAR(255) NOT NULL,
+  position VARCHAR(255) NOT NULL,
+  qualification VARCHAR(255) NOT NULL,
+  department VARCHAR(255) NULL,
+  type ENUM('teaching','non-teaching') NOT NULL,
+  imageUrl VARCHAR(500) NULL,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Insert default admission status (only if table is empty)
+-- Note: Run this manually or handle in application code if needed
+-- INSERT INTO admission_status (isOpen, year) SELECT FALSE, '2025/2026' WHERE NOT EXISTS (SELECT 1 FROM admission_status);
+
