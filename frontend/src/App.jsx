@@ -8,6 +8,9 @@ import Contact from './pages/Contact.jsx';
 import Governance from './pages/Governance.jsx';
 import Registry from './pages/Registry.jsx';
 import Admissions from './pages/Admissions.jsx';
+import Programmes from './pages/Programmes.jsx';
+import Library from './pages/Library.jsx';
+import ICT from './pages/ICT.jsx';
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
         <Route path="/governance" element={<Governance />} />
         <Route path="/registry" element={<Registry />} />
         <Route path="/admissions" element={<Admissions />} />
+        <Route path="/programmes" element={<Programmes />} />
+        <Route path="/library" element={<Library />} />
+        <Route path="/ict" element={<ICT />} />
 
         <Route path="/administration" element={<Administration />} />
 
