@@ -11,6 +11,10 @@ import Admissions from './pages/Admissions.jsx';
 import Programmes from './pages/Programmes.jsx';
 import Library from './pages/Library.jsx';
 import ICT from './pages/ICT.jsx';
+import StudentAffairs from './pages/StudentAffairs.jsx';
+import SRC from './pages/SRC.jsx';
+import Finance from './pages/Finance.jsx';
+import StaffDirectory from './pages/StaffDirectory.jsx';
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
         <Route path="/programmes" element={<Programmes />} />
         <Route path="/library" element={<Library />} />
         <Route path="/ict" element={<ICT />} />
+        <Route path="/src" element={<SRC />} />
+        <Route path="/student-affairs" element={<StudentAffairs />} />
+        <Route path="/finance" element={<Finance />} />
+        <Route path="/staff-directory" element={<StaffDirectory />} />
 
         <Route path="/administration" element={<Administration />} />
 

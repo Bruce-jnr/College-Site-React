@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 function Footer() {
-
   return (
     <footer className="bg-secondary text-light pt-5">
       <div className="container">
@@ -21,19 +20,13 @@ function Footer() {
               <span className="fs-3 fw-bold">Nsawkaw CoE</span>
             </div>
 
-            <div className="d-flex flex-column gap-2">
-              <a
-                href="/#"
-                className="text-decoration-none text-light fw-light"
-              >
+            <div className="d-flex flex-column gap-2 pb-5">
+              <a href="/#" className="text-decoration-none text-light fw-light">
                 <i className="bi bi-geo-alt-fill text-warning me-2"></i>
                 Nsawkaw, Bono Region - Ghana
               </a>
 
-              <a
-                href="/#"
-                className="text-decoration-none text-light fw-light"
-              >
+              <a href="/#" className="text-decoration-none text-light fw-light">
                 <i className="bi bi-mailbox2 text-warning me-2"></i>
                 P. O. Box 1, Nsawkaw
               </a>
@@ -64,10 +57,7 @@ function Footer() {
 
             <ul className="list-unstyled d-flex flex-column gap-2">
               <li>
-                <Link
-                  to="/about"
-                  className="text-light text-decoration-none"
-                >
+                <Link to="/about" className="text-light text-decoration-none">
                   About Us
                 </Link>
               </li>
@@ -139,10 +129,7 @@ function Footer() {
                 <i className="bi bi-facebook fs-2 text-warning"></i>
               </a>
 
-              <a
-                href="mailto:info@nsacoe.edu.gh"
-                className="text-light"
-              >
+              <a href="mailto:info@nsacoe.edu.gh" className="text-light">
                 <i className="bi bi-envelope fs-2 text-warning"></i>
               </a>
 
