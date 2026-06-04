@@ -4,7 +4,7 @@ import logo from '../assets/logo.png';
 function Footer() {
   return (
     <footer className="bg-secondary text-light pt-5">
-      <div className="container">
+      <div className="container pb-5">
         <div className="row gy-4">
           {/* About College */}
           <div className="col-md-4">
@@ -57,7 +57,7 @@ function Footer() {
 
             <ul className="list-unstyled d-flex flex-column gap-2">
               <li>
-                <Link to="/about" className="text-light text-decoration-none">
+                <Link to="/history" className="text-light text-decoration-none">
                   About Us
                 </Link>
               </li>

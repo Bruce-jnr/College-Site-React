@@ -17,25 +17,25 @@ export default function Management() {
             to:
             <ul className="fs-5">
               <li>
-                leading strategic planning, overseeing all administrative and
-                academic affairs
+                Leading strategic planning, overseeing all administrative and
+                academic affairs.
               </li>
               <li>
-                student admissions, registration, maintaining student records,
+                Student admissions, registration, maintaining student records,
                 and organizing official ceremonies like matriculation and
-                graduation
+                graduation.
               </li>
               <li>
-                budgeting, managing funds, collecting fees, and preparing
-                financial reports
+                Budgeting, managing funds, collecting fees, and preparing
+                financial reports.
               </li>
               <li>
-                curriculum development, managing academic programs, and ensuring
-                the quality of teaching and research
+                Curriculum development, managing academic programs, and ensuring
+                the quality of teaching and research.
               </li>
               <li>
-                acquiring new books and journals, managing digital resources,
-                and providing support to students and faculty for research
+                Acquiring new books and journals, managing digital resources,
+                and providing support to students and faculty for research.
               </li>
             </ul>
           </p>
@@ -80,7 +80,7 @@ export default function Management() {
           <div className="col mb-4">
             <ManagementCard
               image="#"
-              name="Kallai Gloria"
+              name="Name"
               position="Auditor"
               email="auditor@nsacoe.edu.gh"
             />

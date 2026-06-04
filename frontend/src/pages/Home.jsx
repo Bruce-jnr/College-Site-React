@@ -5,6 +5,7 @@ import CopyRight from '../components/CopyRight';
 import Map from '../components/Map';
 import Announcement from '../components/Announcement';
 import News from '../components/News';
+import HomeAdmissionsBanner from '../components/HomeAdmissionsBanner';
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Carousel />
       <Announcement />
       <News />
+      <HomeAdmissionsBanner />
       <Map />
       <Footer />
       <CopyRight />

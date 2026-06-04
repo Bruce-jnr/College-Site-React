@@ -86,11 +86,11 @@ async function loadNews() {
                 featured.title
               }</p>
               <p>${featured.content.substring(0, 150)}${
-        featured.content.length > 150 ? '...' : ''
-      }</p>
+                featured.content.length > 150 ? '...' : ''
+              }</p>
               <span class="text-main small">
                 <i class="bi bi-calendar-month text-warning"></i> ${formatDate(
-                  featured.date
+                  featured.date,
                 )} | 
                 <i class="bi bi-person text-warning"></i> ${featured.author} |
                 <i class="bi bi-eyeglasses text-warning"></i> Read more
@@ -113,18 +113,18 @@ async function loadNews() {
             <div class="row g-0">
               <div class="col-md-4">
                 <img src="${item.imageUrl}" class="img-fluid" alt="${
-        item.title
-      }" style="height: 200px; width: auto; object-fit: cover;" />
+                  item.title
+                }" style="height: 200px; width: auto; object-fit: cover;" />
               </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title ${index === 0 ? 'cal-sans' : ''}">${
-        item.title
-      }</h5>
+                    item.title
+                  }</h5>
                   <p class="card-text">
                     <small class="text-body-secondary">
                       <i class="bi bi-calendar-month-fill text-warning"></i> ${formatDate(
-                        item.date
+                        item.date,
                       )} | 
                       <i class="bi bi-person-fill text-warning"></i> ${
                         item.author
@@ -147,7 +147,7 @@ async function loadNews() {
           <h6 class="mb-0 fs-5">${item.title}</h6>
           <span class="text-secondary">
             <i class="bi bi-calendar-month text-warning"></i> ${formatDate(
-              item.date
+              item.date,
             )} | 
             <i class="bi bi-person text-warning"></i> ${item.author}
           </span>

@@ -1,10 +1,15 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
+
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
@@ -15,13 +20,40 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    setIsLoading(true);
 
-    console.log(formData);
+    try {
+      const response = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    // Call your backend API here
-    // axios.post('/api/auth/login', formData)
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        // Sometimes backend sends { token: '...', user: {...} } or similar.
+        // The dashboard assumes localStorage has 'token' to verify connection.
+        if (data.user && data.user.username) {
+          localStorage.setItem('username', data.user.username);
+        } else {
+          localStorage.setItem('username', formData.username);
+        }
+
+        navigate('/admin');
+      } else {
+        setError(data.error || 'Invalid credentials. Please try again.');
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      setError('Network error connecting to the server.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -33,13 +65,7 @@ export default function Login() {
             school
           </span>
 
-          <h2 className="fw-bold m-0">College Registry System</h2>
-        </div>
-
-        <div className="d-flex align-items-center gap-2">
-          <span className="text-muted small">Help Center</span>
-
-          <span className="material-symbols-outlined">help_outline</span>
+          <h2 className="fw-bold m-0">College Website Admin Panel</h2>
         </div>
       </header>
 
@@ -82,6 +108,14 @@ export default function Login() {
             </div>
 
             <form onSubmit={handleSubmit}>
+              {error && (
+                <div className="alert alert-danger text-center fw-semibold py-2">
+                  <span className="material-symbols-outlined align-middle me-2 fs-5">
+                    warning
+                  </span>
+                  {error}
+                </div>
+              )}
               {/* Username */}
               <div className="mb-3">
                 <label className="form-label fw-semibold">
@@ -120,8 +154,9 @@ export default function Login() {
               <button
                 type="submit"
                 className="btn btn-primary w-100 fw-bold py-3"
+                disabled={isLoading}
               >
-                Sign In
+                {isLoading ? 'Authenticating...' : 'Sign In'}
               </button>
             </form>
 

@@ -5,6 +5,15 @@ export default function Announcement() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
   useEffect(() => {
     const fetchAnnouncements = async () => {
       try {
@@ -25,7 +34,7 @@ export default function Announcement() {
   }, []);
 
   const loadAllAnnouncements = () => {
-    console.log('Loading all announcements...');
+    alert('Full announcements page coming soon!');
   };
 
   return (
@@ -55,36 +64,27 @@ export default function Announcement() {
                 {error}
               </div>
             ) : announcements.length === 0 ? (
-              <div className="text-center text-muted">
-                <p>No announcements available yet.</p>
-              </div>
+              <p className="text-muted text-center">No announcements at this time.</p>
             ) : (
-              <div className="d-flex flex-column gap-3">
-                {announcements.map((announcement) => (
-                  <div key={announcement.id} className="card shadow-sm border-0">
-                    <div className="card-body">
-                      <h5 className="card-title fw-bold text-primary">{announcement.title}</h5>
-                      <h6 className="card-subtitle mb-2 text-muted small">
-                        {new Date(announcement.date).toLocaleDateString()} by {announcement.author}
-                      </h6>
-                      <p className="card-text">{announcement.content}</p>
-                    </div>
-                  </div>
-                ))}
+              <div className="alert bg-success-subtle no-radius border-0 border-start border-success border-4 shadow-sm" role="alert">
+                <h5 className="alert-heading fw-bold">{announcements[0].title}</h5>
+                <p className="small mb-0">{announcements[0].content}</p>
+                <p className="mt-1 mb-0 txt-sm text-secondary fw-semibold">
+                  <i className="bi bi-calendar-month text-success me-1"></i> {formatDate(announcements[0].date)} |
+                  <i className="bi bi-person text-success ms-2 me-1"></i> {announcements[0].author}
+                </p>
               </div>
             )}
           </div>
 
-          {!loading && !error && announcements.length > 0 && (
-            <div className="text-center mt-4">
-              <button
-                className="btn btn-outline-primary no-radius"
-                onClick={loadAllAnnouncements}
-              >
-                Read more announcements
-              </button>
-            </div>
-          )}
+          <div className="text-center mt-4 pt-2">
+            <button
+              className="btn btn-outline-primary no-radius px-4 py-2 border-2 fw-bold shadow-sm"
+              onClick={loadAllAnnouncements}
+            >
+              Read more announcements
+            </button>
+          </div>
         </div>
       </div>
     </section>

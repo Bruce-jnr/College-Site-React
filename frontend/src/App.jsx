@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import CollegePrincipal from './pages/CollegePrincipal.jsx';
-import Administration from './pages/Administration.jsx';
-import Academics from './pages/Academic.jsx';
 import Management from './pages/Management.jsx';
 import Contact from './pages/Contact.jsx';
 import Governance from './pages/Governance.jsx';
@@ -15,6 +13,8 @@ import StudentAffairs from './pages/StudentAffairs.jsx';
 import SRC from './pages/SRC.jsx';
 import Finance from './pages/Finance.jsx';
 import StaffDirectory from './pages/StaffDirectory.jsx';
+import Login from './pages/Login.jsx';
+import AdminDashboard from './pages/AdminDashboard.jsx';
 
 function App() {
   return (
@@ -34,10 +34,8 @@ function App() {
         <Route path="/student-affairs" element={<StudentAffairs />} />
         <Route path="/finance" element={<Finance />} />
         <Route path="/staff-directory" element={<StaffDirectory />} />
-
-        <Route path="/administration" element={<Administration />} />
-
-        <Route path="/academics" element={<Academics />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );

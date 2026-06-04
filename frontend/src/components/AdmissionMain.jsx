@@ -159,10 +159,10 @@ export default function Admissions() {
                       letters
                     </span>
                   </div>
-                  <span className="badge text-bg-success rounded-pill">
+                  <span className="badge text-bg-success rounded-pill d-none">
                     Released
                   </span>{' '}
-                  <span className="badge text-bg-muted rounded-pill d-none">
+                  <span className="badge text-bg-success rounded-pill">
                     Pending
                   </span>
                 </li>
