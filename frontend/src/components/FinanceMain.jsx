@@ -1,4 +1,5 @@
 import Card from './Card';
+import placeholder from '../assets/thumbnail.png';
 export default function FinanceMain() {
   return (
     <div className="col-md-12 mb-5">
@@ -6,12 +7,12 @@ export default function FinanceMain() {
         <div className="col-md-9">
           <p className="lead fw-normal text-justify">
             The Finance department takes the fore as the college's
-            <b>financial management and advisory</b> body. They implement
-            <b>policies and procedures to control</b> and
-            <b>administer the financial affairs</b> of the college and to ensure
-            good <b>financial health</b>. The unit's mandate spans from revenue
-            collection, control of expenditure to budget drafting and financial
-            statements preparation.
+            <b> financial management and advisory</b> body. They implement
+            <b> policies and procedures to control</b> and
+            <b> administer the financial affairs</b> of the college and to
+            ensure good <b>financial health</b>. The unit's mandate spans from
+            revenue collection, control of expenditure to budget drafting and
+            financial statements preparation.
           </p>
           <h2 className="fw-bold lh-1 text-main mt-5">
             <i className="bi bi-list-task text-warning"></i> Functions
@@ -51,11 +52,7 @@ export default function FinanceMain() {
           </ul>
         </div>
         <div className="col-md-3">
-          <Card
-            image="./_filx/_visualx/img/departments/finance/1.jpg"
-            title="Finance Officer"
-            name="Name"
-          />
+          <Card image={placeholder} title="Finance Officer" name="Name" />
         </div>
       </div>
     </div>

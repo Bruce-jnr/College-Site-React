@@ -1,4 +1,5 @@
 import Card from './Card';
+import placeholder from '../assets/thumbnail.png';
 export default function RegistryMain() {
   return (
     <div className="container col-md-12">
@@ -60,11 +61,7 @@ export default function RegistryMain() {
         </div>
 
         <div className="col-md-3">
-          <Card
-            name="Name"
-            position="Head of Unit"
-            image="./_filx/_visualx/img/departments/registry/1.jpg"
-          />
+          <Card name="Name" position="Head of Unit" image={placeholder} />
         </div>
       </div>
     </div>

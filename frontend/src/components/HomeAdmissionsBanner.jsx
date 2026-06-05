@@ -9,7 +9,9 @@ export default function HomeAdmissionsBanner() {
   useEffect(() => {
     const loadAdmissionStatus = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/admissions/status');
+        const response = await fetch(
+          'http://localhost:3000/api/admissions/status',
+        );
         const data = await response.json();
 
         setIsOpen(data.isOpen);
@@ -29,7 +31,7 @@ export default function HomeAdmissionsBanner() {
       className="text-light text-center position-relative aos-init aos-animate"
       data-aos="fade-up"
       data-aos-delay="100"
-      style={{ background: '#0a2472' }}
+      style={{ background: '#05133cff' }}
     >
       <img
         src={AdmissionImage}

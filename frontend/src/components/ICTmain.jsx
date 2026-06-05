@@ -1,4 +1,5 @@
 import Card from './Card';
+import placeholder from '../assets/thumbnail.png';
 export default function ICTmain() {
   return (
     <div className="col-md-12">
@@ -36,11 +37,7 @@ export default function ICTmain() {
           </ul>
         </div>
         <div className="col-md-3">
-          <Card
-            name="Name"
-            position="Head of Unit"
-            image="./_filx/_visualx/img/departments/it/1.jpg"
-          />
+          <Card name="Name" position="Head of Unit" image={placeholder} />
         </div>
       </div>
     </div>

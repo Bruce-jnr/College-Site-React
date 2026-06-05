@@ -1,12 +1,18 @@
-export default function ManagementCard({ image, name, position, email }) {
+import placeholder from '../assets/thumbnail.png';
+export default function ManagementCard({
+  image = placeholder,
+  name,
+  position,
+  email,
+}) {
   return (
     <div className="card shadow">
       <img
         className="img-fluid fit-img-30vh"
         src={image}
         alt="Nsawkaw College of Education"
-        description="Sylvester Donkor - Principal of Berkeum College of Education"
         loading="lazy"
+        style={{ width: '15rem' }}
       />
       <div className="card-body">
         <p className="card-text h3 cal-sans">

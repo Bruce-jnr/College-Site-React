@@ -1,5 +1,6 @@
 import Card from './Card';
 import LibraryModal from './LibraryModal';
+import placeholder from '../assets/thumbnail.png';
 
 export default function LibraryMain() {
   return (
@@ -80,7 +81,7 @@ export default function LibraryMain() {
 
           <div className="col-md-3">
             <Card
-              image="./_filx/_visualx/img/departments/library/1.jpg"
+              image={placeholder}
               name="Henrietta Abena Fio"
               position="College Librarian"
             />
@@ -95,17 +96,17 @@ export default function LibraryMain() {
       <div className="col-md-12">
         <div className="row justify-content-center">
           {[
-            { img: '2.jpg', role: 'Assistant Librarian' },
-            { img: '3.jpg', role: 'Assistant Librarian' },
-            { img: '4.jpg', role: 'Library Assistant' },
-            { img: '5.jpg', role: 'Library Assistant' },
-            { img: '6.jpg', role: 'Library Assistant', mt: true },
+            { img: placeholder, role: 'Assistant Librarian' },
+            { img: placeholder, role: 'Assistant Librarian' },
+            { img: placeholder, role: 'Library Assistant' },
+            { img: placeholder, role: 'Library Assistant' },
+            { img: placeholder, role: 'Library Assistant', mt: true },
           ].map((person, index) => (
             <div key={index} className={`col-md-3 ${person.mt ? 'mt-3' : ''}`}>
               <div className="card shadow">
                 <img
                   className="img-fluid"
-                  src={`./_filx/_visualx/img/departments/library/${person.img}`}
+                  src={person.img}
                   style={{ height: '280px' }}
                   alt="Nsawkaw College of Education"
                   loading="lazy"

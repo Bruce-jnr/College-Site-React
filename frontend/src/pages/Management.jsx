@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import Copyright from '../components/CopyRight';
 import ContentHeader from '../components/ContentHeader';
 import ManagementCard from '../components/ManagementCard';
-
+import placeholder from '../assets/thumbnail.png';
 export default function Management() {
   return (
     <div className="px-0 mt-5 pt-5">
@@ -47,7 +47,7 @@ export default function Management() {
         <div className="row">
           <div className="col mb-4">
             <ManagementCard
-              image="./_filx/_visualx/img/mgmt/7.jpg"
+              image={placeholder}
               name="Prof. Oppon-kumi Augustine"
               position="Principal"
               email="principal@nsacoe.edu.gh"
@@ -55,7 +55,7 @@ export default function Management() {
           </div>
           <div className="col mb-4">
             <ManagementCard
-              image="./_filx/_visualx/img/mgmt/2.jpg"
+              image={placeholder}
               name="Mr. Addo Fosu Sylvester"
               position="Vice Principal"
               email="vice-principal@nsacoe.edu.gh"
@@ -63,7 +63,7 @@ export default function Management() {
           </div>
           <div className="col mb-4">
             <ManagementCard
-              image="./_filx/_visualx/img/mgmt/3.jpg"
+              image={placeholder}
               name="Mr. Augustine Djan"
               position="Registrar"
               email="secretary@nsacoe.edu.gh"
@@ -71,7 +71,7 @@ export default function Management() {
           </div>
           <div className="col mb-4">
             <ManagementCard
-              image="./_filx/_visualx/img/mgmt/4.jpg"
+              image={placeholder}
               name="Mr. Kuseg Daniel"
               position="Financial Officer"
               email="finance-officer@nsacoe.edu.gh"
@@ -79,7 +79,7 @@ export default function Management() {
           </div>
           <div className="col mb-4">
             <ManagementCard
-              image="#"
+              image={placeholder}
               name="Name"
               position="Auditor"
               email="auditor@nsacoe.edu.gh"
@@ -87,7 +87,7 @@ export default function Management() {
           </div>
           <div className="col mb-4">
             <ManagementCard
-              image="./_filx/_visualx/img/mgmt/6.jpg"
+              image={placeholder}
               name="Bernard Besseah"
               position="Librarian"
               email="librarian@nsacoe.edu.gh"

@@ -6,6 +6,7 @@ import BannerContent from '../components/BannerContent';
 import BEdit2 from '../assets/BEdit3.png';
 import ICTmain from '../components/ICTmain';
 import Card from '../components/Card';
+import placeholder from '../assets/thumbnail.png';
 
 export default function ICT() {
   return (
@@ -27,11 +28,7 @@ export default function ICT() {
         <div className="col-md-12">
           <div className="row justify-content-center">
             <div className="col-md-3">
-              <Card
-                name="Name"
-                position="Head of Unit"
-                image="./_filx/_visualx/img/departments/it/1.jpg"
-              />
+              <Card name="Name" position="Head of Unit" image={placeholder} />
             </div>
           </div>
         </div>

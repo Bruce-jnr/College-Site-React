@@ -439,7 +439,7 @@ export default function Admissions() {
                   <span className="badge rounded-pill text-bg-warning">1</span>{' '}
                   Visit the{' '}
                   <a
-                    href="https://admissions.nsacoe.edu.gh/"
+                    href="https://app.nsacoe.edu.gh/student/login"
                     target="_blank"
                     rel="noreferrer"
                   >
