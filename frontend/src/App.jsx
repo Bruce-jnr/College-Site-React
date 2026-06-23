@@ -13,8 +13,12 @@ import StudentAffairs from './pages/StudentAffairs.jsx';
 import SRC from './pages/SRC.jsx';
 import Finance from './pages/Finance.jsx';
 import StaffDirectory from './pages/StaffDirectory.jsx';
-import Login from './pages/Login.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
+import Login from './pages/Login.jsx';
+
+import History from './pages/History.jsx';
+import News from './pages/News.jsx';
+import NewsDetails from './components/NewsDetails.jsx';
 
 function App() {
   return (
@@ -36,6 +40,9 @@ function App() {
         <Route path="/staff-directory" element={<StaffDirectory />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/news-details" element={<NewsDetails />} />
       </Routes>
     </BrowserRouter>
   );

@@ -103,6 +103,11 @@ function Navbar() {
 
                 <ul className="dropdown-menu border-0 shadow bg-warning">
                   <li>
+                    <Link className="dropdown-item fw-bold" to="/precis">
+                      <i className="bi bi-chevron-right"></i> Precis
+                    </Link>
+                  </li>
+                  <li>
                     <Link className="dropdown-item fw-bold" to="/history">
                       <i className="bi bi-chevron-right"></i> History
                     </Link>
@@ -132,6 +137,12 @@ function Navbar() {
                   <li>
                     <Link className="dropdown-item fw-bold" to="/units">
                       <i className="bi bi-chevron-right"></i> Units
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link className="dropdown-item fw-bold" to="/projects">
+                      <i className="bi bi-chevron-right"></i> Projects
                     </Link>
                   </li>
 
