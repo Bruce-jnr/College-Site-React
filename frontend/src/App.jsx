@@ -21,6 +21,7 @@ import Precis from './pages/Precis.jsx';
 import History from './pages/History.jsx';
 import News from './pages/News.jsx';
 import NewsDetails from './components/NewsDetails.jsx';
+import ForgotPassword from './pages/ForgotPassword.jsx';
 
 function App() {
   useEffect(() => {
@@ -52,6 +53,7 @@ function App() {
         <Route path="/news" element={<News />} />
         <Route path="/news-details" element={<NewsDetails />} />
         <Route path="/precis" element={<Precis />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </BrowserRouter>
   );

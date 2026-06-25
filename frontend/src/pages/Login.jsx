@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -158,6 +158,12 @@ export default function Login() {
               >
                 {isLoading ? 'Authenticating...' : 'Sign In'}
               </button>
+
+              <div className="text-center mt-3">
+                <Link to="/forgot-password" size="sm" className="text-decoration-none text-muted small fw-bold">
+                  Forgot Password?
+                </Link>
+              </div>
             </form>
 
             {/* Footer Text */}
