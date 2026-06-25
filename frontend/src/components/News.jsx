@@ -77,7 +77,7 @@ export default function News() {
           {featured && (
             <div className="card no-radius border-0 h-100 shadow-sm hover-lift">
               <a
-                href={`/news/${featured.id}`}
+                href={`/news#news-${featured.id}`}
                 className="text-decoration-none text-dark d-flex flex-column h-100"
               >
                 {featured.imageUrl && (
@@ -118,7 +118,7 @@ export default function News() {
           {/* First 2 news with images in card layout */}
           {rightColumnNews.map((item, index) => (
             <a
-              href={`/news/${item.id}`}
+              href={`/news#news-${item.id}`}
               className="text-decoration-none text-dark hover-lift"
               key={item.id}
             >
@@ -164,7 +164,7 @@ export default function News() {
                 <div key={item.id}>
                   {index > 0 && <hr className="my-3 text-muted opacity-25" />}
                   <a
-                    href={`/news/${item.id}`}
+                    href={`/news#news-${item.id}`}
                     className="text-decoration-none text-dark d-block hover-lift"
                   >
                     <h6 className="mb-2 fs-5 fw-bold lh-sm">{item.title}</h6>

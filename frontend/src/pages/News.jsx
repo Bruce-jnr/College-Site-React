@@ -1,33 +1,34 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CopyRight from '../components/CopyRight';
+import BannerContent from '../components/BannerContent';
+import BEdit1 from '../assets/BEdit1.png';
+
+const API = 'http://localhost:3000';
 
 export default function News() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchNews();
+    (async () => {
+      try {
+        const res = await fetch(`${API}/api/news`);
+        if (!res.ok) throw new Error('Failed to load news');
+        const data = await res.json();
+        setNews(Array.isArray(data) ? data : []);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    })();
   }, []);
 
-  async function fetchNews() {
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL || '';
-      const response = await fetch(`${apiUrl}/api/news`);
-      const data = await response.json();
-      setNews(data);
-    } catch (error) {
-      console.error('Error fetching news:', error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -37,57 +38,103 @@ export default function News() {
   return (
     <div className="px-0 mt-5 pt-5">
       <Navbar />
-      <section className="container py-5">
-        <h1 className="mb-4 fw-bold text-main display-5">Latest News</h1>
-        <hr className="mb-5" />
+      <BannerContent
+        title="News & Highlights"
+        breadcrumb="News"
+        description="Stay up to date with the latest news, events, and announcements from Nsawkaw College of Education."
+        image={BEdit1}
+      />
 
-        {loading ? (
-          <div className="text-center my-5">
-            <div className="spinner-border text-primary" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        ) : news.length === 0 ? (
-          <div className="text-center my-5">
-            <p className="text-muted fs-5">No news articles found.</p>
-          </div>
-        ) : (
-          <div className="row">
-            {news.map((item) => (
-              <div key={item.id} className="col-md-6 mb-4">
-                <div className="card h-100 border-0 shadow-sm overflow-hidden news-card">
-                  <Link to={`/news-details?id=${item.id}`} className="text-decoration-none">
+      <section className="py-5">
+        <div className="container">
+          <div className="col-md-10 col-lg-8 mx-auto">
+
+            {loading ? (
+              <div className="text-center py-5">
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            ) : error ? (
+              <div className="alert alert-danger text-center">{error}</div>
+            ) : news.length === 0 ? (
+              <p className="text-muted text-center py-5 fs-5">No news articles found.</p>
+            ) : (
+              <div className="d-flex flex-column gap-5">
+                {news.map((item, index) => (
+                  <article
+                    key={item.id}
+                    className="bg-white rounded-4 shadow-sm overflow-hidden"
+                    id={`news-${item.id}`}
+                  >
+                    {/* Cover image */}
                     {item.imageUrl && (
-                      <div className="overflow-hidden">
+                      <div style={{ maxHeight: '420px', overflow: 'hidden' }}>
                         <img
-                          src={`${import.meta.env.VITE_API_URL || ''}${item.imageUrl}`}
-                          className="card-img-top news-image"
+                          src={`${API}${item.imageUrl}`}
                           alt={item.title}
-                          style={{ height: '240px', objectFit: 'cover' }}
+                          className="w-100"
+                          style={{ objectFit: 'cover', maxHeight: '420px' }}
+                          loading="lazy"
                         />
                       </div>
                     )}
-                    <div className="card-body p-4">
-                      <h5 className="card-title text-main fw-bold mb-3">{item.title}</h5>
-                      <p className="card-text text-secondary mb-4">
-                        {item.content.substring(0, 150)}...
-                      </p>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <small className="text-muted">
-                          <i className="bi bi-calendar3 me-1"></i> {formatDate(item.date)}
-                        </small>
-                        <span className="text-primary fw-bold small">
-                          READ MORE <i className="bi bi-arrow-right"></i>
+
+                    <div className="p-4 p-md-5">
+                      {/* Badge */}
+                      <span
+                        className="badge mb-3 px-3 py-2 rounded-pill"
+                        style={{ background: 'var(--accent-color)', color: '#221b00', fontWeight: 700 }}
+                      >
+                        News #{index + 1}
+                      </span>
+
+                      {/* Title */}
+                      <h2
+                        className="fw-bold mb-2"
+                        style={{ color: 'var(--main-color)', fontSize: '1.6rem', lineHeight: 1.3 }}
+                      >
+                        {item.title}
+                      </h2>
+
+                      {/* Meta */}
+                      <p className="text-muted small mb-4 d-flex align-items-center gap-3 flex-wrap">
+                        <span>
+                          <i className="bi bi-calendar3 me-1 text-warning"></i>
+                          {formatDate(item.date)}
                         </span>
+                        <span>
+                          <i className="bi bi-person-fill me-1 text-warning"></i>
+                          {item.author}
+                        </span>
+                      </p>
+
+                      <hr className="mb-4" />
+
+                      {/* Full article content */}
+                      <div className="news-content">
+                        {item.content.split('\n').map((paragraph, i) =>
+                          paragraph.trim() ? (
+                            <p
+                              key={i}
+                              className="mb-3 lh-lg"
+                              style={{ fontSize: '1.05rem', textAlign: 'justify' }}
+                            >
+                              {paragraph}
+                            </p>
+                          ) : null
+                        )}
                       </div>
                     </div>
-                  </Link>
-                </div>
+                  </article>
+                ))}
               </div>
-            ))}
+            )}
+
           </div>
-        )}
+        </div>
       </section>
+
       <Footer />
       <CopyRight />
     </div>
