@@ -27,8 +27,9 @@ app.use(cors());
 app.use(express.json());
 app.use(compression());
 
-// Static files (for images)
+// Static files
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 // API Routes
 app.use('/api/auth', authRoutes);
@@ -41,6 +42,11 @@ app.use('/api/pages', pagesRoutes);
 
 app.get('/', (req, res) => {
   res.send('College Website Backend API is Running!');
+});
+
+// Serve frontend for any other route (Catch-all)
+app.get('*catchall', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
 // Central Error Handler

@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Home from './pages/Home.jsx';
 import CollegePrincipal from './pages/CollegePrincipal.jsx';
 import Management from './pages/Management.jsx';
@@ -15,12 +17,18 @@ import Finance from './pages/Finance.jsx';
 import StaffDirectory from './pages/StaffDirectory.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
 import Login from './pages/Login.jsx';
-
+import Precis from './pages/Precis.jsx';
 import History from './pages/History.jsx';
 import News from './pages/News.jsx';
 import NewsDetails from './components/NewsDetails.jsx';
 
 function App() {
+  useEffect(() => {
+    if (window.AOS) {
+      window.AOS.init({ duration: 600, once: true });
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -43,6 +51,7 @@ function App() {
         <Route path="/history" element={<History />} />
         <Route path="/news" element={<News />} />
         <Route path="/news-details" element={<NewsDetails />} />
+        <Route path="/precis" element={<Precis />} />
       </Routes>
     </BrowserRouter>
   );

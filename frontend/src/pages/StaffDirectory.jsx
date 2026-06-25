@@ -19,7 +19,9 @@ export default function StaffDirectory() {
   useEffect(() => {
     const fetchStaff = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/staff?type=teaching');
+        const response = await fetch(
+          'http://localhost:3000/api/staff?type=teaching',
+        );
         if (!response.ok) {
           throw new Error('Failed to fetch staff directory');
         }
@@ -34,13 +36,16 @@ export default function StaffDirectory() {
     fetchStaff();
   }, []);
 
-  const departments = [...new Set(allStaff.map((s) => s.department).filter(Boolean))].sort();
+  const departments = [
+    ...new Set(allStaff.map((s) => s.department).filter(Boolean)),
+  ].sort();
 
   const filteredStaff = allStaff.filter((m) => {
     const matchSearch =
       !searchQuery ||
       m.full_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (m.position && m.position.toLowerCase().includes(searchQuery.toLowerCase()));
+      (m.position &&
+        m.position.toLowerCase().includes(searchQuery.toLowerCase()));
 
     const matchDept = !departmentFilter || m.department === departmentFilter;
 
@@ -56,13 +61,16 @@ export default function StaffDirectory() {
     <div className="mt-5 pt-5">
       <Navbar />
       <BannerContent
-        title="Staff Directory"
+        title="Academic Staff Directory"
         breadcrumb="Staff Directory"
         description="Welcome to the Staff Directory. Find more information about the staff, personnel and functions"
         image={BEdit1}
       />
-      <ContentHeader title="Staff Directory" icon="bi bi-people-fill text-secondary ms-2" />
-      
+      <ContentHeader
+        title="Staff Directory"
+        icon="bi bi-people-fill text-secondary ms-2"
+      />
+
       <FilterBar
         searchQuery={searchQuery}
         onSearchChange={(e) => setSearchQuery(e.target.value)}
@@ -73,7 +81,7 @@ export default function StaffDirectory() {
         loading={loading}
         onClearFilters={clearFilters}
       />
-      
+
       <StaffMain staff={filteredStaff} loading={loading} error={error} />
 
       <Footer />
