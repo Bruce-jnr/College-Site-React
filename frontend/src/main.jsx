@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { ModalProvider } from './context/ModalContext.jsx'
 
 // AOS is loaded from CDN in index.html — initialize it here
 if (typeof window !== 'undefined' && window.AOS) {
@@ -10,6 +11,8 @@ if (typeof window !== 'undefined' && window.AOS) {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <ModalProvider>
+      <App />
+    </ModalProvider>
   </StrictMode>,
 )

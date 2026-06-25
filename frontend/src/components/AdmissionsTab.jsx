@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useModal } from '../context/ModalContext';
 
 export default function AdmissionsTab() {
+  const { showAlert, showConfirm } = useModal();
   const [isOpen, setIsOpen] = useState(false);
   const [year, setYear] = useState('');
   const [loading, setLoading] = useState(true);
@@ -27,34 +29,34 @@ export default function AdmissionsTab() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    if (!window.confirm(`Save changes? Admissions will be explicitly marked as ${isOpen ? 'OPEN' : 'CLOSED'}.`)) return;
+    showConfirm('Save Changes?', `Admissions will be explicitly marked as ${isOpen ? 'OPEN' : 'CLOSED'}.`, async () => {
+      setIsUpdating(true);
+      try {
+        const response = await fetch('http://localhost:3000/api/admissions/status', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ isOpen, year })
+        });
 
-    setIsUpdating(true);
-    try {
-      const response = await fetch('http://localhost:3000/api/admissions/status', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ isOpen, year })
-      });
+        if (response.status === 401 || response.status === 403) {
+          window.location.href = '/login';
+          return;
+        }
 
-      if (response.status === 401 || response.status === 403) {
-        window.location.href = '/login';
-        return;
+        if (response.ok) {
+          showAlert('Success', `Admission settings successfully updated!`);
+        } else {
+          showAlert('Error', 'Failed to update status');
+        }
+      } catch (err) {
+        showAlert('Error', 'Error updating status');
+      } finally {
+        setIsUpdating(false);
       }
-
-      if (response.ok) {
-        alert(`Admission settings successfully updated!`);
-      } else {
-        alert('Failed to update status');
-      }
-    } catch (err) {
-      alert('Error updating status');
-    } finally {
-      setIsUpdating(false);
-    }
+    });
   };
 
   return (

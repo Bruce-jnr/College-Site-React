@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useModal } from '../context/ModalContext';
 
 export default function Announcement() {
+  const { showAlert } = useModal();
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,7 +36,7 @@ export default function Announcement() {
   }, []);
 
   const loadAllAnnouncements = () => {
-    alert('Full announcements page coming soon!');
+    showAlert('Coming Soon', 'Full announcements page coming soon!');
   };
 
   return (

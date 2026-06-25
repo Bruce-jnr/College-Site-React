@@ -63,7 +63,7 @@ function Navbar() {
             />
             Nsawkaw
             <span className="d-md-none">COE</span>
-            <span className="d-none d-md-inline">College of Education</span>
+            <span className="d-none d-md-inline"> College of Education</span>
           </Link>
 
           {/* Mobile Toggle */}

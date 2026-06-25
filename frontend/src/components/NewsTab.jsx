@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
+import { useModal } from '../context/ModalContext';
 
 export default function NewsTab() {
+  const { showAlert, showConfirm } = useModal();
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -53,7 +55,7 @@ export default function NewsTab() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !content) {
-      alert('Please provide title and content.');
+      showAlert('Required', 'Please provide title and content.');
       return;
     }
 
@@ -75,7 +77,7 @@ export default function NewsTab() {
 
       const data = await response.json();
       if (response.ok) {
-        alert('News posted successfully!');
+        showAlert('Success', 'News posted successfully!');
         setTitle('');
         setContent('');
         setImageFile(null);
@@ -83,10 +85,10 @@ export default function NewsTab() {
         if (fileInputRef.current) fileInputRef.current.value = '';
         fetchNews(); // refresh list
       } else {
-        alert(data.error || 'Failed to post news');
+        showAlert('Error', data.error || 'Failed to post news');
       }
     } catch (err) {
-      alert('Error posting news');
+      showAlert('Error', 'Error posting news');
       console.error(err);
     } finally {
       setIsSubmitting(false);
@@ -94,22 +96,23 @@ export default function NewsTab() {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this news?')) return;
-    try {
-      const response = await fetch(`http://localhost:3000/api/news/${id}`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (response.ok) {
-        alert('News deleted successfully!');
-        fetchNews();
-      } else {
-        alert('Failed to delete news');
+    showConfirm('Confirm Delete', 'Are you sure you want to delete this news?', async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/news/${id}`, {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response.ok) {
+          showAlert('Success', 'News deleted successfully!');
+          fetchNews();
+        } else {
+          showAlert('Error', 'Failed to delete news');
+        }
+      } catch (err) {
+        showAlert('Error', 'Error deleting news');
+        console.error(err);
       }
-    } catch (err) {
-      alert('Error deleting news');
-      console.error(err);
-    }
+    });
   };
 
   const formatDate = (dateString) => {

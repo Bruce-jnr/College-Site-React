@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useModal } from '../context/ModalContext';
 
 export default function AnnouncementTab() {
+  const { showAlert, showConfirm } = useModal();
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,7 +40,7 @@ export default function AnnouncementTab() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !content) {
-      alert('Please provide title and content.');
+      showAlert('Required', 'Please provide title and content.');
       return;
     }
 
@@ -59,15 +61,15 @@ export default function AnnouncementTab() {
 
       const data = await response.json();
       if (response.ok) {
-        alert('Announcement posted successfully!');
+        showAlert('Success', 'Announcement posted successfully!');
         setTitle('');
         setContent('');
         fetchAnnouncements(); // refresh list
       } else {
-        alert(data.error || 'Failed to post announcement');
+        showAlert('Error', data.error || 'Failed to post announcement');
       }
     } catch (error) {
-      alert('Error posting announcement');
+      showAlert('Error', 'Error posting announcement');
       console.error(error);
     } finally {
       setIsSubmitting(false);
@@ -75,22 +77,23 @@ export default function AnnouncementTab() {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this announcement?')) return;
-    try {
-      const response = await fetch(`http://localhost:3000/api/announcements/${id}`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (response.ok) {
-        alert('Announcement deleted successfully!');
-        fetchAnnouncements(); // Refresh the list
-      } else {
-        alert('Failed to delete announcement');
+    showConfirm('Confirm Delete', 'Are you sure you want to delete this announcement?', async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/announcements/${id}`, {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response.ok) {
+          showAlert('Success', 'Announcement deleted successfully!');
+          fetchAnnouncements(); // Refresh the list
+        } else {
+          showAlert('Error', 'Failed to delete announcement');
+        }
+      } catch (err) {
+        showAlert('Error', 'Error deleting announcement');
+        console.error(err);
       }
-    } catch (err) {
-      alert('Error deleting announcement');
-      console.error(err);
-    }
+    });
   };
 
   const formatDate = (dateString) => {

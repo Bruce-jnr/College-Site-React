@@ -1,14 +1,16 @@
 import { useNavigate } from 'react-router-dom';
+import { useModal } from '../context/ModalContext';
 
 export default function DashboardHeader() {
+  const { showConfirm } = useModal();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    if (window.confirm('Are you sure you want to logout?')) {
+    showConfirm('Logout', 'Are you sure you want to logout?', () => {
       localStorage.removeItem('token');
       localStorage.removeItem('username');
       navigate('/');
-    }
+    });
   };
 
   return (

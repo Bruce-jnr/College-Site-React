@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
+import { useModal } from '../context/ModalContext';
 
 export default function StaffSrcTab() {
+  const { showAlert, showConfirm } = useModal();
   const [activeTab, setActiveTab] = useState('teaching');
   const token = localStorage.getItem('token');
 
@@ -101,16 +103,16 @@ export default function StaffSrcTab() {
         body: formData,
       });
       if (res.ok) {
-        alert('Staff added successfully!');
+        showAlert('Success', 'Staff added successfully!');
         setFullName(''); setPosition(''); setDepartment(''); setQualification(''); setImageFile(null);
         if (fileInputRefStaff.current) fileInputRefStaff.current.value = '';
         fetchStaff();
       } else {
-        alert('Failed to add staff');
+        showAlert('Error', 'Failed to add staff');
       }
     } catch (e) {
       console.error(e);
-      alert('Error adding staff');
+      showAlert('Error', 'Error adding staff');
     } finally {
       setIsSubmitting(false);
     }
@@ -133,35 +135,37 @@ export default function StaffSrcTab() {
         body: formData,
       });
       if (res.ok) {
-        alert('SRC executive added successfully!');
+        showAlert('Success', 'SRC executive added successfully!');
         setFullName(''); setPosition(''); setYear(''); setIsCurrent(false); setImageFile(null);
         if (fileInputRefSrc.current) fileInputRefSrc.current.value = '';
         fetchSrc();
       } else {
-        alert('Failed to add SRC executive');
+        showAlert('Error', 'Failed to add SRC executive');
       }
     } catch (e) {
       console.error(e);
-      alert('Error adding SRC executive');
+      showAlert('Error', 'Error adding SRC executive');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDeleteStaff = async (id) => {
-    if (!window.confirm('Delete this staff member?')) return;
-    try {
-      await fetch(`http://localhost:3000/api/staff/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
-      fetchStaff();
-    } catch (e) {}
+    showConfirm('Confirm Delete', 'Delete this staff member?', async () => {
+      try {
+        await fetch(`http://localhost:3000/api/staff/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+        fetchStaff();
+      } catch (e) {}
+    });
   };
 
   const handleDeleteSrc = async (id) => {
-    if (!window.confirm('Delete this SRC executive?')) return;
-    try {
-      await fetch(`http://localhost:3000/api/src/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
-      fetchSrc();
-    } catch (e) {}
+    showConfirm('Confirm Delete', 'Delete this SRC executive?', async () => {
+      try {
+        await fetch(`http://localhost:3000/api/src/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+        fetchSrc();
+      } catch (e) {}
+    });
   };
 
   return (
