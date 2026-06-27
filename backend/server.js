@@ -1,9 +1,9 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import compression from 'compression';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import './config/env.js';
 import pool from './config/database.js';
 
 import authRoutes from './routes/auth.js';
@@ -13,8 +13,6 @@ import newsRoutes from './routes/news.js';
 import srcRoutes from './routes/src.js';
 import staffRoutes from './routes/staff.js';
 import pagesRoutes from './routes/pages.js';
-
-dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

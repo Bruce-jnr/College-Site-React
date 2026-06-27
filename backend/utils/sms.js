@@ -1,5 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import '../config/env.js';
 
 const ARKSEL_APIKEY = process.env.ARKSEL_APIKEY;
 const ARKSEL_SENDER_ID = process.env.ARKSEL_SENDER_ID || 'NSACOE';

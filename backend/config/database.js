@@ -1,6 +1,5 @@
 import mysql from 'mysql2/promise';
-import dotenv from 'dotenv';
-dotenv.config();
+import './env.js';
 
 // Create connection pool
 const pool = mysql.createPool({
