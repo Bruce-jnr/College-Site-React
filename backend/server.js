@@ -25,6 +25,20 @@ app.use(cors());
 app.use(express.json());
 app.use(compression());
 
+// API responses are live application data. Prevent browsers and reverse
+// proxies (including cPanel's Nginx cache) from serving stale JSON after a
+// create, update, or delete operation.
+app.use('/api', (req, res, next) => {
+  res.set({
+    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0',
+    Pragma: 'no-cache',
+    Expires: '0',
+    'Surrogate-Control': 'no-store',
+    'X-Accel-Expires': '0',
+  });
+  next();
+});
+
 // Static files
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
