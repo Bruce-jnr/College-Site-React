@@ -24,8 +24,7 @@ export default function NewsDetails() {
 
     try {
       // Get the API URL from environment variables or use relative path
-      const apiUrl = import.meta.env.VITE_API_URL || '';
-      const response = await fetch(`${apiUrl}/api/news/${newsId}`);
+      const response = await fetch(`/api/news/${newsId}`);
 
       if (!response.ok) {
         throw new Error('News not found');
@@ -80,7 +79,7 @@ export default function NewsDetails() {
                 {article.imageUrl && (
                   <div className="mb-4">
                     <img
-                      src={`${import.meta.env.VITE_API_URL || ''}${article.imageUrl}`}
+                      src={article.imageUrl}
                       className="img-fluid rounded shadow-sm"
                       alt={article.title}
                     />

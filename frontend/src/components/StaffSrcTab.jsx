@@ -30,7 +30,7 @@ export default function StaffSrcTab() {
   const fetchStaff = async () => {
     try {
       setLoadingStaff(true);
-      const res = await fetch('http://localhost:3000/api/staff/history?type=teaching', {
+      const res = await fetch('/api/staff/history?type=teaching', {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.status === 401 || res.status === 403) { window.location.href = '/login'; return; }
@@ -46,7 +46,7 @@ export default function StaffSrcTab() {
   const fetchSrc = async () => {
     try {
       setLoadingSrc(true);
-      const res = await fetch('http://localhost:3000/api/src/history', {
+      const res = await fetch('/api/src/history', {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.status === 401 || res.status === 403) { window.location.href = '/login'; return; }
@@ -97,7 +97,7 @@ export default function StaffSrcTab() {
     if (imageFile) formData.append('image', imageFile);
 
     try {
-      const res = await fetch('http://localhost:3000/api/staff', {
+      const res = await fetch('/api/staff', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
@@ -129,7 +129,7 @@ export default function StaffSrcTab() {
     if (imageFile) formData.append('image', imageFile);
 
     try {
-      const res = await fetch('http://localhost:3000/api/src', {
+      const res = await fetch('/api/src', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
@@ -153,7 +153,7 @@ export default function StaffSrcTab() {
   const handleDeleteStaff = async (id) => {
     showConfirm('Confirm Delete', 'Delete this staff member?', async () => {
       try {
-        await fetch(`http://localhost:3000/api/staff/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+        await fetch(`/api/staff/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
         fetchStaff();
       } catch (e) {}
     });
@@ -162,7 +162,7 @@ export default function StaffSrcTab() {
   const handleDeleteSrc = async (id) => {
     showConfirm('Confirm Delete', 'Delete this SRC executive?', async () => {
       try {
-        await fetch(`http://localhost:3000/api/src/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+        await fetch(`/api/src/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
         fetchSrc();
       } catch (e) {}
     });
@@ -279,7 +279,7 @@ function StaffMiniCard({ name, role, image, onDelete }) {
   return (
     <div className="staff-mini-card position-relative shadow-sm rounded-4 border-0">
       <div className="staff-mini-avatar">
-        <img src={image ? `http://localhost:3000${image}` : "https://ui-avatars.com/api/?name=Staff"} alt={name} />
+        <img src={image || "https://ui-avatars.com/api/?name=Staff"} alt={name} />
       </div>
 
       <h5 className="fs-6 fw-bold text-main">{name}</h5>

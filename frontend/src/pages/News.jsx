@@ -5,8 +5,6 @@ import CopyRight from '../components/CopyRight';
 import BannerContent from '../components/BannerContent';
 import BEdit1 from '../assets/BEdit1.png';
 
-const API = 'http://localhost:3000';
-
 export default function News() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +13,7 @@ export default function News() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(`${API}/api/news`);
+        const res = await fetch('/api/news');
         if (!res.ok) throw new Error('Failed to load news');
         const data = await res.json();
         setNews(Array.isArray(data) ? data : []);
@@ -71,7 +69,7 @@ export default function News() {
                     {item.imageUrl && (
                       <div style={{ maxHeight: '420px', overflow: 'hidden' }}>
                         <img
-                          src={`${API}${item.imageUrl}`}
+                          src={item.imageUrl}
                           alt={item.title}
                           className="w-100"
                           style={{ objectFit: 'cover', maxHeight: '420px' }}

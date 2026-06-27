@@ -31,7 +31,7 @@ export default function StaffMain({ staff, loading, error }) {
                   <div className="card-img-top mx-auto mt-4" style={{ width: '120px', height: '120px' }}>
                     {m.imageUrl ? (
                       <img
-                        src={`http://localhost:3000${m.imageUrl}`}
+                        src={m.imageUrl}
                         className="rounded-circle w-100 h-100 shadow-sm border border-2 border-warning"
                         style={{ objectFit: 'cover' }}
                         alt={m.full_name}

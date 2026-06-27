@@ -10,7 +10,7 @@ export default function HomeAdmissionsBanner() {
     const loadAdmissionStatus = async () => {
       try {
         const response = await fetch(
-          'http://localhost:3000/api/admissions/status',
+          '/api/admissions/status',
         );
         const data = await response.json();
 

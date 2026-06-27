@@ -7,7 +7,7 @@ export default function Admissions() {
     const loadAdmissionStatus = async () => {
       try {
         const response = await fetch(
-          'http://localhost:3000/api/admissions/status',
+          '/api/admissions/status',
         );
         const status = await response.json();
 

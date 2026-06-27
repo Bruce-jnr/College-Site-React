@@ -12,7 +12,7 @@ export default function AdmissionsTab() {
 
   const fetchStatus = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/admissions/status');
+      const response = await fetch('/api/admissions/status');
       const data = await response.json();
       setIsOpen(data.isOpen);
       setYear(data.year || '2024/2025');
@@ -32,7 +32,7 @@ export default function AdmissionsTab() {
     showConfirm('Save Changes?', `Admissions will be explicitly marked as ${isOpen ? 'OPEN' : 'CLOSED'}.`, async () => {
       setIsUpdating(true);
       try {
-        const response = await fetch('http://localhost:3000/api/admissions/status', {
+        const response = await fetch('/api/admissions/status', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ export default function SRCMain() {
   useEffect(() => {
     const fetchSrcExecs = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/src');
+        const response = await fetch('/api/src');
         if (!response.ok) {
           throw new Error('Failed to fetch SRC executives');
         }
@@ -89,7 +89,7 @@ export default function SRCMain() {
                             <div className="card-body d-flex flex-column align-items-center p-4">
                               {exec.imageUrl ? (
                                 <img
-                                  src={`http://localhost:3000${exec.imageUrl}`}
+                                  src={exec.imageUrl}
                                   className="img-fluid rounded-circle shadow border border-3 border-white mb-3"
                                   style={{ height: '160px', width: '160px', objectFit: 'cover' }}
                                   alt={exec.name}

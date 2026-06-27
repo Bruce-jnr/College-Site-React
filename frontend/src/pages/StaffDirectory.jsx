@@ -20,7 +20,7 @@ export default function StaffDirectory() {
     const fetchStaff = async () => {
       try {
         const response = await fetch(
-          'http://localhost:3000/api/staff?type=teaching',
+          '/api/staff?type=teaching',
         );
         if (!response.ok) {
           throw new Error('Failed to fetch staff directory');

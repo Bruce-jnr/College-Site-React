@@ -17,7 +17,7 @@ export default function News() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/news');
+        const response = await fetch('/api/news');
         if (!response.ok) {
           throw new Error('Failed to fetch news');
         }
@@ -82,7 +82,7 @@ export default function News() {
               >
                 {featured.imageUrl && (
                   <img
-                    src={`http://localhost:3000${featured.imageUrl}`}
+                    src={featured.imageUrl}
                     className="card-img-top img-fluid rounded-top"
                     alt={featured.title}
                     style={{ objectFit: 'cover', height: '300px' }}
@@ -126,7 +126,7 @@ export default function News() {
                 <div className="row g-0 align-items-center">
                   <div className="col-md-4 h-100">
                     <img
-                      src={`http://localhost:3000${item.imageUrl}`}
+                      src={item.imageUrl}
                       className="img-fluid h-100 w-100"
                       alt={item.title}
                       style={{ minHeight: '200px', objectFit: 'cover' }}

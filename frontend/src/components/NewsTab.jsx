@@ -19,7 +19,7 @@ export default function NewsTab() {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/news/history', {
+      const response = await fetch('/api/news/history', {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.status === 401 || response.status === 403) {
@@ -67,7 +67,7 @@ export default function NewsTab() {
     if (imageFile) formData.append('image', imageFile);
 
     try {
-      const response = await fetch('http://localhost:3000/api/news', {
+      const response = await fetch('/api/news', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -98,7 +98,7 @@ export default function NewsTab() {
   const handleDelete = async (id) => {
     showConfirm('Confirm Delete', 'Are you sure you want to delete this news?', async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/news/${id}`, {
+        const response = await fetch(`/api/news/${id}`, {
           method: 'DELETE',
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -193,7 +193,7 @@ export default function NewsTab() {
         news.map((item) => (
           <article className="news-card mb-4 shadow-sm" key={item.id}>
             {item.imageUrl ? (
-              <img src={`http://localhost:3000${item.imageUrl}`} alt={item.title} />
+              <img src={item.imageUrl} alt={item.title} />
             ) : (
               <div className="bg-light d-flex align-items-center justify-content-center" style={{ height: '210px' }}>
                 <span className="material-symbols-outlined" style={{ fontSize: '3rem', color: '#ccc' }}>newspaper</span>

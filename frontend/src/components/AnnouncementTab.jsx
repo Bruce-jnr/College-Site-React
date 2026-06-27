@@ -16,7 +16,7 @@ export default function AnnouncementTab() {
 
   const fetchAnnouncements = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/announcements/history', {
+      const response = await fetch('/api/announcements/history', {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.status === 401 || response.status === 403) {
@@ -46,7 +46,7 @@ export default function AnnouncementTab() {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch('http://localhost:3000/api/announcements', {
+      const response = await fetch('/api/announcements', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ export default function AnnouncementTab() {
   const handleDelete = async (id) => {
     showConfirm('Confirm Delete', 'Are you sure you want to delete this announcement?', async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/announcements/${id}`, {
+        const response = await fetch(`/api/announcements/${id}`, {
           method: 'DELETE',
           headers: { Authorization: `Bearer ${token}` },
         });
