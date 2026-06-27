@@ -1,10 +1,8 @@
 import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
 
-// Load either deployment-root or backend-local settings without replacing
-// environment variables configured directly by the hosting platform.
-dotenv.config({ quiet: true });
+// Resolve the repository-root .env independently of cPanel's working directory.
 dotenv.config({
-  path: fileURLToPath(new URL('../.env', import.meta.url)),
+  path: fileURLToPath(new URL('../../.env', import.meta.url)),
   quiet: true,
 });
