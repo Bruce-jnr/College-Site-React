@@ -255,6 +255,18 @@ export default function LibraryModal() {
                     </a>
                   </td>
                 </tr>
+                <tr>
+                  <td>
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://login.research4life.org/tacgw/login.cshtml"
+                      className="text-decoration-none"
+                    >
+                      Research4Life
+                    </a>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
