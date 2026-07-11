@@ -89,7 +89,10 @@ export default function News() {
                   />
                 )}
                 <div className="card-body d-flex flex-column p-4">
-                  <p className="card-text mb-3 fs-3 text-secondary fw-bold lh-sm">
+                  <p
+                    className="card-text mb-3 fs-3 fw-bold lh-sm"
+                    style={{ color: '#120351ff' }}
+                  >
                     {featured.title}
                   </p>
                   <p

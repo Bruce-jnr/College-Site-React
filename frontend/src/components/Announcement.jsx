@@ -66,14 +66,23 @@ export default function Announcement() {
                 {error}
               </div>
             ) : announcements.length === 0 ? (
-              <p className="text-muted text-center">No announcements at this time.</p>
+              <p className="text-muted text-center">
+                No announcements at this time.
+              </p>
             ) : (
-              <div className="alert bg-success-subtle no-radius border-0 border-start border-success border-4 shadow-sm" role="alert">
-                <h5 className="alert-heading fw-bold">{announcements[0].title}</h5>
+              <div
+                className="alert bg-success-subtle no-radius border-0 border-start border-success border-4 shadow-sm"
+                role="alert"
+              >
+                <h5 className="alert-heading fw-bold">
+                  {announcements[0].title}
+                </h5>
                 <p className="small mb-0">{announcements[0].content}</p>
-                <p className="mt-1 mb-0 txt-sm text-secondary fw-semibold">
-                  <i className="bi bi-calendar-month text-success me-1"></i> {formatDate(announcements[0].date)} |
-                  <i className="bi bi-person text-success ms-2 me-1"></i> {announcements[0].author}
+                <p className="mt-1 mb-0 txt-sm fw-semibold">
+                  <i className="bi bi-calendar-month text-secondary me-1"></i>{' '}
+                  {formatDate(announcements[0].date)} |
+                  <i className="bi bi-person text-secondary ms-2 me-1"></i>{' '}
+                  {announcements[0].author}
                 </p>
               </div>
             )}
